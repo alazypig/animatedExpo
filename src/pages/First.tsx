@@ -1,6 +1,7 @@
+import Button from '@/components/Button'
 import { GlobalStyle } from '@/global/style'
-import { View, Text, Button } from 'react-native'
-import Animated, { useSharedValue } from 'react-native-reanimated'
+import { View } from 'react-native'
+import Animated, { useSharedValue, withSpring } from 'react-native-reanimated'
 
 const First = () => {
   const width = useSharedValue(100)
@@ -11,15 +12,22 @@ const First = () => {
         style={{
           width,
           height: 100,
-          backgroundColor: 'violet',
+          borderRadius: 8,
+          backgroundColor: '#e099f2',
         }}
       />
-      <Button
-        onPress={() => {
-          width.value += 10
-        }}
-        title="press me"
-      />
+      <View style={{ marginTop: 16, width: 200 }}>
+        <Button
+          onPress={() => {
+            if (width.value > 200) {
+              width.value = withSpring(100)
+            } else {
+              width.value = withSpring(width.value + 30)
+            }
+          }}
+          label="Press me"
+        />
+      </View>
     </View>
   )
 }
