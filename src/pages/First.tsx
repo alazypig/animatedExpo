@@ -8,7 +8,7 @@ const First = () => {
   return (
     <View style={GlobalStyle.page    }>
       <Animated.View style={{
-          width,
+          width, 
           height: 100,
           backgroundColor: 'violet',
         }}
