@@ -8,7 +8,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "pre-commit": "lint-staged",
-    "prettier": "prettier --write src/**/*.{js,jsx,ts,tsx,json,css,scss,md}",
+    "prettier": "prettier --config .prettierrc.json --write src/**/*.{js,jsx,ts,tsx,json,css,scss,md}",
     "ts:check": "tsc"
   },
   "dependencies": {
