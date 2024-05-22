@@ -5,6 +5,7 @@ const GlobalColor = {
   MAIN_WHITE: '#FFFFFF',
   MAIN_YELLOW: '#ffd33d',
   BUTTON_BG: '#57bcf7',
+  BOX_BG: '#e099f2',
 }
 
 const GlobalSize = {
@@ -57,6 +58,12 @@ const GlobalStyle = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: GlobalSize.PAGE_DEFAULT_PADDING,
+  },
+  animatedBox: {
+    backgroundColor: GlobalColor.BOX_BG,
+    width: 100,
+    height: 100,
+    borderRadius: 8,
   },
 })
 
