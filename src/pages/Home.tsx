@@ -3,8 +3,15 @@ import { GlobalSize } from '@/global/style'
 import { StatusBar } from 'expo-status-bar'
 import { View, ScrollView } from 'react-native'
 import { PageConfig } from './config'
+import React, { useEffect } from 'react'
 
 const Home = ({ navigation }) => {
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => <View></View>,
+    })
+  }, [navigation])
+
   return (
     <ScrollView
       style={{
