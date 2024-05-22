@@ -6,13 +6,14 @@ const First = () => {
   const width = useSharedValue(100)
 
   return (
-    <View style={GlobalStyle.page    }>
-      <Animated.View style={{
-          width, 
+    <View style={GlobalStyle.page}>
+      <Animated.View
+        style={{
+          width,
           height: 100,
           backgroundColor: 'violet',
         }}
-      /> 
+      />
       <Button
         onPress={() => {
           width.value += 10
