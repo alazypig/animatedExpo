@@ -1,5 +1,8 @@
+import Button from '@/components/Button'
+import { GlobalSize } from '@/global/style'
 import { StatusBar } from 'expo-status-bar'
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
+import { View, ScrollView } from 'react-native'
+import { PageConfig } from './config'
 
 const Home = ({ navigation }) => {
   return (
@@ -10,18 +13,21 @@ const Home = ({ navigation }) => {
         padding: 16,
       }}
     >
-      <TouchableOpacity
-        style={{
-          backgroundColor: 'yellow',
-          width: '100%',
-          padding: 16,
-          alignItems: 'center',
-        }}
-        onPress={() => navigation.navigate('First')}
-      >
-        <Text>Test</Text>
-      </TouchableOpacity>
-      <StatusBar style="auto" />
+      {Object.keys(PageConfig)
+        .filter((i) => i !== 'Home')
+        .map((pageName) => (
+          <View
+            key={pageName}
+            style={{ marginBottom: GlobalSize.PAGE_DEFAULT_PADDING }}
+          >
+            <Button
+              label={pageName}
+              theme="primary"
+              onPress={() => navigation.navigate(pageName)}
+            />
+          </View>
+        ))}
+      <StatusBar style="dark" />
     </ScrollView>
   )
 }
