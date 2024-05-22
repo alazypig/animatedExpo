@@ -6,7 +6,7 @@ const First = () => {
   const width = useSharedValue(100)
 
   return (
-    <View style={GlobalStyle.page}>
+    <View style={GlobalStyle.page    }>
       <Animated.View style={{
           width,
           height: 100,

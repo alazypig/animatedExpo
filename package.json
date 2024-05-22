@@ -7,8 +7,12 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "pre-commit": "lint-staged",
     "ts:check": "tsc"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
@@ -35,6 +39,7 @@
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@babel/plugin-transform-export-namespace-from": "^7.24.1",
+    "husky": "^9.0.11",
     "lint-staged": "^15.2.4",
     "prettier": "3.2.5",
     "ts-node": "^10.9.2",
