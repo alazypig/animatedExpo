@@ -1,15 +1,24 @@
 import Button from '@/components/Button'
-import { GlobalStyle } from '@/global/style'
+import { GlobalColor, GlobalStyle } from '@/global/style'
 import useStore from '@/store'
 import { observer } from 'mobx-react-lite'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { View } from 'react-native'
 import Animated, { useSharedValue, withSpring } from 'react-native-reanimated'
 
-const Width: React.FC = () => {
+const Width = ({ navigation }) => {
   const { root } = useStore()
   const width = useSharedValue(100)
   const STEP = 30
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerStyle: {
+        backgroundColor: GlobalColor(root.dark).PAGE_BACKGROUND,
+      },
+      headerTintColor: GlobalColor(root.dark).BLACK,
+    })
+  }, [navigation])
 
   return (
     <View style={GlobalStyle(root.dark).page}>

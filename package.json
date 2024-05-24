@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "expo/AppEntry.js",
   "scripts": {
-    "dev": "APP_VARIANT=development npx expo start",
+    "dev-no-cache": "APP_VARIANT=development npx expo start -- --reset-cache",
+    "dev": "APP_VARIANT=development npx expo start --dev-client",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",

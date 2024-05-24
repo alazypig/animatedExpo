@@ -27,7 +27,7 @@ const GlobalColorDark = {
 }
 
 const GlobalColor = (dark: 'dark' | 'light' = 'light') => {
-  return dark ? GlobalColorDark : GlobalColorLight
+  return dark === 'dark' ? GlobalColorDark : GlobalColorLight
 }
 
 const GlobalSize = {

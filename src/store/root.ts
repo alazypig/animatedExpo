@@ -9,6 +9,9 @@ class RootStore {
   @observable
   private __dark: 'light' | 'dark'
 
+  @observable
+  private __loading: boolean = true
+
   constructor() {
     makeAutoObservable(this)
     this.init()
@@ -23,6 +26,8 @@ class RootStore {
     } else {
       this.__dark = darkMode === 'dark' ? 'dark' : 'light'
     }
+
+    this.__loading = false
     // Logger.info(`darkMode: ${this.__dark}`)
   }
 
@@ -42,6 +47,10 @@ class RootStore {
 
   get dark() {
     return this.__dark
+  }
+
+  get loading() {
+    return this.__loading
   }
 }
 
