@@ -1,6 +1,8 @@
 import Button from '@/components/Button'
-import { GlobalStyle } from '@/global/style'
-import React from 'react'
+import { GlobalColor, GlobalStyle } from '@/global/style'
+import useStore from '@/store'
+import { observer } from 'mobx-react-lite'
+import React, { useEffect } from 'react'
 import { View } from 'react-native'
 import Animated, {
   useAnimatedStyle,
@@ -8,7 +10,8 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated'
 
-const TranslateX: React.FC<{}> = () => {
+const TranslateX = ({ navigation }) => {
+  const { root } = useStore()
   const translateX = useSharedValue<number>(0)
   const STEP = 50
 
@@ -16,10 +19,21 @@ const TranslateX: React.FC<{}> = () => {
     transform: [{ translateX: withSpring(translateX.value) }],
   }))
 
+  useEffect(() => {
+    navigation.setOptions({
+      headerStyle: {
+        backgroundColor: GlobalColor(root.dark).PAGE_BACKGROUND,
+      },
+      headerTintColor: GlobalColor(root.dark).BLACK,
+    })
+  }, [navigation])
+
   return (
-    <View style={GlobalStyle.page}>
+    <View style={GlobalStyle(root.dark).page}>
       <View style={{ width: '100%', height: 150 }}>
-        <Animated.View style={[GlobalStyle.animatedBox, animatedStyle]} />
+        <Animated.View
+          style={[GlobalStyle(root.dark).animatedBox, animatedStyle]}
+        />
       </View>
       <Button
         label="Press me"
@@ -35,4 +49,4 @@ const TranslateX: React.FC<{}> = () => {
   )
 }
 
-export default TranslateX
+export default observer(TranslateX)

@@ -1,5 +1,8 @@
 import Button from '@/components/Button'
 import { GlobalColor, GlobalStyle } from '@/global/style'
+import useStore from '@/store'
+import { observer } from 'mobx-react-lite'
+import { useEffect } from 'react'
 import { View } from 'react-native'
 import Animated, {
   useAnimatedProps,
@@ -10,7 +13,8 @@ import { Svg, Circle } from 'react-native-svg'
 
 const ACircle = Animated.createAnimatedComponent(Circle)
 
-const AnimatedCircle: React.FC<{}> = () => {
+const AnimatedCircle = ({ navigation }) => {
+  const { root } = useStore()
   const radius = useSharedValue<number>(20)
   const STEP = 30
 
@@ -18,13 +22,22 @@ const AnimatedCircle: React.FC<{}> = () => {
     r: withTiming(radius.value, { duration: 500 }),
   }))
 
+  useEffect(() => {
+    navigation.setOptions({
+      headerStyle: {
+        backgroundColor: GlobalColor(root.dark).PAGE_BACKGROUND,
+      },
+      headerTintColor: GlobalColor(root.dark).BLACK,
+    })
+  }, [navigation])
+
   return (
-    <View style={GlobalStyle.page}>
+    <View style={GlobalStyle(root.dark).page}>
       <Svg style={{ width: 300, height: 300 }}>
         <ACircle
           cx="50%"
           cy="50%"
-          fill={GlobalColor.BOX_BG}
+          fill={GlobalColor(root.dark).CYAN}
           animatedProps={animatedProps}
         />
       </Svg>
@@ -42,4 +55,4 @@ const AnimatedCircle: React.FC<{}> = () => {
   )
 }
 
-export default AnimatedCircle
+export default observer(AnimatedCircle)

@@ -1,7 +1,13 @@
 import { StyleSheet, Text, TouchableOpacity } from 'react-native'
-import { GlobalColor, GlobalFontStyle } from '@/global/style'
+import {
+  GlobalColorDark,
+  GlobalColorLight,
+  GlobalFontStyle,
+} from '@/global/style'
+import useStore from '@/store'
+import { observer } from 'mobx-react-lite'
 
-export default function Button({
+const Button = ({
   label,
   theme,
   onPress,
@@ -9,17 +15,31 @@ export default function Button({
   label: string
   onPress: () => void
   theme?: 'primary'
-}) {
+}) => {
+  const { root } = useStore()
+
   return (
     <TouchableOpacity
       activeOpacity={0.8}
       style={[
         styles.button,
-        theme === 'primary' && { backgroundColor: GlobalColor.MAIN_YELLOW },
+        theme === 'primary'
+          ? {
+              backgroundColor:
+                root.dark === 'light'
+                  ? GlobalColorLight.BRANDING_ORANGE
+                  : GlobalColorDark.BRANDING_ORANGE,
+            }
+          : {
+              backgroundColor:
+                root.dark === 'light'
+                  ? GlobalColorLight.BRANDING_BLUE
+                  : GlobalColorDark.BRANDING_BLUE,
+            },
       ]}
       onPress={onPress}
     >
-      <Text style={[GlobalFontStyle.NORMAL_18]}>{label}</Text>
+      <Text style={[GlobalFontStyle(root.dark).NORMAL_18]}>{label}</Text>
     </TouchableOpacity>
   )
 }
@@ -32,9 +52,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
-    backgroundColor: GlobalColor.BUTTON_BG,
   },
   buttonIcon: {
     paddingRight: 8,
   },
 })
+
+export default observer(Button)

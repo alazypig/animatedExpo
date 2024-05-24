@@ -3,13 +3,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
-    }
+      "@/*": ["src/*"]
+    },
+    "experimentalDecorators": false
   },
-  "include": [
-    "**/*.ts",
-    "**/*.tsx"
-  ]
+  "include": ["**/*.ts", "**/*.tsx"],
+  "useDefineForClassFields": true
 }
