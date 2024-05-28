@@ -1,4 +1,5 @@
 import AnimatedCircle from './AnimatedCircle'
+import CountDown from './CountDown'
 import Draggable from './Draggable'
 import Drop from './Drop'
 import FadeInText from './FadeInText'
@@ -14,4 +15,5 @@ export const PageConfig = {
   Draggable: Draggable,
   Drop: Drop,
   FadeInText: FadeInText,
+  CountDown: CountDown,
 }
