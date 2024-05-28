@@ -4,6 +4,7 @@ import Draggable from './Draggable'
 import Drop from './Drop'
 import FadeInText from './FadeInText'
 import Repeat from './Repeat'
+import Layout from './Layout'
 import Shake from './Shake'
 import TranslateX from './TranslateX'
 import Width from './Width'
@@ -18,4 +19,5 @@ export const PageConfig = {
   FadeInText: FadeInText,
   CountDown: CountDown,
   Repeat: Repeat,
+  Layout: Layout,
 }
