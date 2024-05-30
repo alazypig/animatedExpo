@@ -52,7 +52,9 @@ const Layout = ({ navigation }) => {
           flex: 1,
           width: '100%',
           backgroundColor: GlobalColor(root.dark).PAGE_BACKGROUND,
+          marginBottom: GlobalSize.PAGE_DEFAULT_PADDING,
         }}
+        showsVerticalScrollIndicator={false}
       >
         {render && (
           <View>

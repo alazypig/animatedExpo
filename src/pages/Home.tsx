@@ -111,6 +111,7 @@ const Home = ({ navigation }) => {
         },
         animatedStyle,
       ]}
+      showsVerticalScrollIndicator={false}
     >
       {Object.keys(PageConfig)
         .filter((i) => i !== 'Home')
