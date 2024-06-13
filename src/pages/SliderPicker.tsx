@@ -226,6 +226,7 @@ const SliderPicker = (config: Config) => {
 
   const value = useSharedValue(props.value)
   const isShowLabel = useSharedValue(false)
+  const scale = useSharedValue(1)
   const _panResponder = useRef(null)
   const _containerSize = useRef(null)
   const _trackSize = useRef(null)
@@ -293,6 +294,7 @@ const SliderPicker = (config: Config) => {
     _fireChangeEvent('onSlidingStart')
 
     isShowLabel.value = true
+    scale.value = 1.3
   }
 
   const _handlePanResponderMove = (
@@ -351,6 +353,7 @@ const SliderPicker = (config: Config) => {
 
     if (props.maxAvailableValue > 0 && value > props.maxAvailableValue) {
       isShowLabel.value = false
+      scale.value = 1
 
       return
     }
@@ -358,6 +361,7 @@ const SliderPicker = (config: Config) => {
     _setCurrentValue(_getValue(gestureState))
     _fireChangeEvent('onSlidingComplete')
     isShowLabel.value = false
+    scale.value = 1
   }
 
   const _measureContainer = (x) => {
@@ -560,6 +564,10 @@ const SliderPicker = (config: Config) => {
     opacity: withTiming(isShowLabel.value ? 1 : 0, { duration: 100 }),
   }))
 
+  const scaleValue = useAnimatedStyle(() => ({
+    transform: [{ scale: withTiming(scale.value, { duration: 100 }) }],
+  }))
+
   const minimumTrackStyle = {
     position: 'absolute',
     width: minimumTrackWidth + thumbSize.width / 2,
@@ -583,6 +591,7 @@ const SliderPicker = (config: Config) => {
             // backgroundColor: 'green',
             alignItems: 'center',
             position: 'relative',
+            top: 10,
           }}
         >
           <Pressable
@@ -725,6 +734,27 @@ const SliderPicker = (config: Config) => {
           {..._panResponder.current.panHandlers}
         />
 
+        <Animated.View
+          style={[
+            {
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              top: 0,
+            },
+            scaleValue,
+          ]}
+        >
+          <Text
+            style={[
+              GlobalFontStyle(root.dark).NORMAL_22,
+              { textAlign: 'center', color: GlobalColor(root.dark).BLACK },
+            ]}
+          >
+            {value.value}
+          </Text>
+        </Animated.View>
+
         {props.labelCount > 0 && (
           <View
             style={[
@@ -759,6 +789,14 @@ const SliderPickerPage = ({ navigation }) => {
 
   return (
     <View style={GlobalStyle(root.dark).page}>
+      <Text
+        style={[
+          GlobalFontStyle(root.dark).NORMAL_18,
+          { color: GlobalColor(root.dark).BLACK },
+        ]}
+      >
+        Max Available: 50%
+      </Text>
       <SliderPicker
         onValueChange={(value: number) => {
           setValue(value)
@@ -785,7 +823,7 @@ export default observer(SliderPickerPage)
 
 const defaultStyles = StyleSheet.create({
   container: {
-    height: 50,
+    height: 70,
     justifyContent: 'center',
   },
   track: {
