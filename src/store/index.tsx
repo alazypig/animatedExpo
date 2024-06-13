@@ -1,13 +1,13 @@
 import React from 'react'
 import storeFactory from './storeFactory'
-import { useLocalObservable, useLocalStore } from 'mobx-react-lite'
+import { useLocalObservable } from 'mobx-react-lite'
 
 export type Stores = ReturnType<typeof storeFactory>
 
 const storeContext = React.createContext<Stores | null>(null)
 
 export const StoreProvider = ({ children }: any) => {
-  const store = useLocalStore(storeFactory)
+  const store = useLocalObservable(storeFactory)
 
   return <storeContext.Provider value={store}>{children}</storeContext.Provider>
 }
