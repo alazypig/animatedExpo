@@ -8,6 +8,7 @@ import Layout from './Layout'
 import Shake from './Shake'
 import TranslateX from './TranslateX'
 import Width from './Width'
+import SliderPicker from './SliderPicker'
 
 export const PageConfig = {
   Width: Width,
@@ -20,4 +21,5 @@ export const PageConfig = {
   CountDown: CountDown,
   Repeat: Repeat,
   Layout: Layout,
+  SliderPicker: SliderPicker,
 }
