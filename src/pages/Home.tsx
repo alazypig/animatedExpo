@@ -6,7 +6,13 @@ import {
   GlobalSize,
 } from '@/global/style'
 import { StatusBar } from 'expo-status-bar'
-import { View, TouchableOpacity, Text, Platform } from 'react-native'
+import {
+  View,
+  TouchableOpacity,
+  Text,
+  Platform,
+  SafeAreaView,
+} from 'react-native'
 import { PageConfig } from './config'
 import React, { useEffect } from 'react'
 import { Octicons, AntDesign } from '@expo/vector-icons'
@@ -102,32 +108,36 @@ const Home = ({ navigation }) => {
       </Text>
     </View>
   ) : (
-    <Animated.ScrollView
-      style={[
-        {
-          width: '100%',
-          flex: 1,
-          padding: 16,
-        },
-        animatedStyle,
-      ]}
-    >
-      {Object.keys(PageConfig)
-        .filter((i) => i !== 'Home')
-        .map((pageName) => (
-          <View
-            key={pageName}
-            style={{ marginBottom: GlobalSize.PAGE_DEFAULT_PADDING }}
-          >
-            <Button
-              label={pageName}
-              theme="primary"
-              onPress={() => navigation.navigate(pageName)}
-            />
-          </View>
-        ))}
-      <StatusBar style="dark" />
-    </Animated.ScrollView>
+    <SafeAreaView style={{ flex: 1 }}>
+      <Animated.ScrollView
+        style={[
+          {
+            width: '100%',
+            flex: 1,
+            paddingHorizontal: GlobalSize.PAGE_DEFAULT_PADDING,
+          },
+          animatedStyle,
+        ]}
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={{ height: GlobalSize.PAGE_DEFAULT_PADDING }} />
+        {Object.keys(PageConfig)
+          .filter((i) => i !== 'Home')
+          .map((pageName) => (
+            <View
+              key={pageName}
+              style={{ marginBottom: GlobalSize.PAGE_DEFAULT_PADDING }}
+            >
+              <Button
+                label={pageName}
+                theme="primary"
+                onPress={() => navigation.navigate(pageName)}
+              />
+            </View>
+          ))}
+        <StatusBar style="dark" />
+      </Animated.ScrollView>
+    </SafeAreaView>
   )
 }
 
