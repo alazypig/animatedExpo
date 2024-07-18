@@ -9,6 +9,7 @@
 ### TODO
 
 1. complete Header component. (Discarded)
-2. new animating components. (Finised)
+2. new animating components. (Finished)
 3. count down timer. (Finished)
-4. slider picker component.
+4. slider picker component. (Finished)
+5. drawer animation. (Finished, still need some feature)

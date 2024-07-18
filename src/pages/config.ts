@@ -9,6 +9,7 @@ import Shake from './Shake'
 import TranslateX from './TranslateX'
 import Width from './Width'
 import SliderPicker from './SliderPicker'
+import DrawerAnimation from './DrawerAnimation'
 
 export const PageConfig = {
   Width: Width,
@@ -22,4 +23,5 @@ export const PageConfig = {
   Repeat: Repeat,
   Layout: Layout,
   SliderPicker: SliderPicker,
+  DrawerAnimation: DrawerAnimation,
 }
